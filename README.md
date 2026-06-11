@@ -19,7 +19,7 @@ It provides a minimal API for defining, serializing, and handling packets, along
 
 ### Installation
 
-Add the compiled JAR to your project:
+Add the repository and dependency to your project:
 
 #### Gradle:
 
