@@ -1,9 +1,11 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group = "ru.mrbedrockpy"
 version = "1.0"
+def artifact = "BedPackets"
 
 repositories {
     mavenCentral()
@@ -19,4 +21,26 @@ dependencies {
 shadowJar {
     configurations = project.configurations.named('runtimeClasspath').map { [it] }
     archiveFileName = "${project.parent.name}-${project.version}.jar"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = group
+            artifactId = artifact
+            version = version
+        }
+    }
+    repositories {
+        maven {
+            name = "Nexus"
+            def baseUrl = "https://repo.mrbedrockpy.ru/repository"
+            url = version.endsWith('SNAPSHOT') ? "$baseUrl/maven-snapshots/" : "$baseUrl/maven-releases/"
+            credentials {
+                username = project.findProperty("nexusUsername") ?: System.getenv("NEXUS_USERNAME")
+                password = project.findProperty("nexusPassword") ?: System.getenv("NEXUS_PASSWORD")
+            }
+        }
+    }
 }

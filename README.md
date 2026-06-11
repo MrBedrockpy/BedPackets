@@ -24,21 +24,35 @@ Add the compiled JAR to your project:
 #### Gradle:
 
 ```gradle
+repositories {
+    maven {
+        url = "https://repo.mrbedrockpy.ru/repository/maven-public/"
+    }
+}
+
 dependencies {
-    implementation files("libs/bedpackets.jar")
+    compileOnly "ru.mrbedrockpy:BedPackets:1.0"
 }
 ```
 
 #### Maven:
 
 ```xml
-<dependency>
-    <groupId>your.group</groupId>
-    <artifactId>bedpackets</artifactId>
-    <version>1.0</version>
-    <scope>system</scope>
-    <systemPath>${project.basedir}/libs/bedpackets.jar</systemPath>
-</dependency>
+<repositories>
+    <repository>
+        <id>mrbedrockpy-repo</id>
+        <url>https://repo.mrbedrockpy.ru/repository/maven-public/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>ru.mrbedrockpy</groupId>
+        <artifactId>BedPackets</artifactId>
+        <version>1.0</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
 ```
 
 ----
