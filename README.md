@@ -49,21 +49,27 @@ dependencies {
 
 ```java
 public class TestPacket implements Packet {
+    
     private final int value;
+    
     public TestPacket(int value) {
         this.value = value;
     }
+    
     public TestPacket(FriendlyByteBuf buf) {
         this.value = buf.readInt();
     }
+    
     @Override
     public void write(FriendlyByteBuf buf) {
         buf.write(value);
     }
+    
     @Override
     public String getName() {
         return "test";
     }
+    
     @Override
     public void handle(PacketContext context) {
         System.out.println("Received: " + value);
@@ -78,6 +84,7 @@ public class TestPacket implements Packet {
 ```java
 // register all packets here
 PacketManager.INSTANCE.register("test", TestPacket::new);
+
 // connection lifecycle handlers (connect / disconnect)
 PacketManager.INSTANCE.onConnect(connection -> {
     System.out.println("Client connected");
@@ -87,6 +94,7 @@ PacketManager.INSTANCE.onConnect(connection -> {
 PacketManager.INSTANCE.onDisconnect((connection, reason) -> {
     System.out.println("Disconnected: " + reason);
 });
+
 // server initialization
 NettyServerTransport server = new NettyServerTransport(25565);
 RuntimeException error = server.start();
@@ -100,6 +108,7 @@ if (error != null) throw error;
 ```java
 // register all packets here (must match server)
 PacketManager.INSTANCE.register("test", TestPacket::new);
+
 // client connection initialization
 NettyClientTransport client = new NettyClientTransport("localhost", 25565);
 RuntimeException error = client.start();
