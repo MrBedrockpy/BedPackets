@@ -6,6 +6,17 @@ It provides a minimal API for defining, serializing, and handling packets, along
 
 ----
 
+### Features
+
+* Simple packet abstraction
+* Automatic serialization/deserialization
+* No reflection
+* Transport layer based on Netty
+* Event-driven connection handling
+* Client/Server side detection
+
+----
+
 ### Installation
 
 Add the compiled JAR to your project:
@@ -29,17 +40,6 @@ dependencies {
     <systemPath>${project.basedir}/libs/bedpackets.jar</systemPath>
 </dependency>
 ```
-
-----
-
-### Features
-
-* Simple packet abstraction
-* Automatic serialization/deserialization
-* No reflection
-* Transport layer based on Netty
-* Event-driven connection handling
-* Client/Server side detection
 
 ----
 
