@@ -1,0 +1,15 @@
+plugins {
+    id "java"
+}
+
+group = "ru.mrbedrockpy"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+def nettyVersion = project.property("nettyVersion")
+dependencies {
+    implementation "io.netty:netty-buffer:$nettyVersion"
+}

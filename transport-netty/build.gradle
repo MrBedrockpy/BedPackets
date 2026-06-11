@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group = "ru.mrbedrockpy"
+version = "1.0"
+
+repositories {
+    mavenCentral()
+}
+
+def nettyVersion = project.property("nettyVersion")
+dependencies {
+    implementation "io.netty:netty-buffer:$nettyVersion"
+    implementation "io.netty:netty-handler:$nettyVersion"
+    implementation "io.netty:netty-transport:$nettyVersion"
+    implementation project(":core")
+}
+
+shadowJar {
+    configurations = project.configurations.named('runtimeClasspath').map { [it] }
+    archiveFileName = "${project.parent.name}-${project.version}.jar"
+}

@@ -1,0 +1,29 @@
+plugins {
+    id "java"
+    id "com.gradleup.shadow" version "9.2.2"
+}
+
+group = "ru.mrbedrockpy"
+version = "1.0-SNAPSHOT"
+
+subprojects {
+
+    apply plugin: "java"
+    apply plugin: "com.gradleup.shadow"
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        def lombok = "org.projectlombok:lombok:1.18.34"
+        compileOnly lombok
+        annotationProcessor lombok
+    }
+
+    shadowJar {
+        configurations = project.configurations.named('runtimeClasspath').map { [it] }
+        archiveFileName = "${project.name}-${project.version}.jar"
+    }
+
+}

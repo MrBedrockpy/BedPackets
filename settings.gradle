@@ -1,0 +1,6 @@
+rootProject.name = "BedPackets"
+
+include "core"
+include "transport-netty"
+
+include 'example'
