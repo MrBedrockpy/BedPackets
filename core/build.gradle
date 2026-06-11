@@ -9,7 +9,6 @@ repositories {
     mavenCentral()
 }
 
-def nettyVersion = project.property("nettyVersion")
 dependencies {
-    implementation "io.netty:netty-buffer:$nettyVersion"
+    implementation "io.netty:netty-buffer:4.2.12.Final"
 }
