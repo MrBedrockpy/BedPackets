@@ -23,7 +23,7 @@ Add the compiled JAR to your project:
 
 #### Gradle:
 
-```gradle
+```groovy
 repositories {
     maven {
         url = "https://repo.mrbedrockpy.ru/repository/maven-public/"
